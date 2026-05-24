@@ -85,8 +85,8 @@ Waffli/
 ### Pasos
 ```bash
 git clone https://github.com/AnaLinares-NA/WaffliApp.git
-cd waffli
-open Waffli/Waffli.xcodeproj
+cd WaffliApp/iOS
+open Waffli.xcodeproj
 ```
 
 Selecciona un simulador o dispositivo iOS 17+ y presiona **Cmd+R**.
