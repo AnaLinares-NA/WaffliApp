@@ -1,0 +1,32 @@
+{
+  "images" : [
+    {
+      "filename" : "Screenshot 2026-05-23 at 2.11.43 p.m..png",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "light"
+        }
+      ],
+      "filename" : "Screenshot 2026-05-23 at 2.11.16 p.m..png",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Screenshot 2026-05-23 at 2.11.33 p.m..png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

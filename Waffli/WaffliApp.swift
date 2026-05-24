@@ -6,12 +6,25 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct WaffliApp: App {
+
+    let container: ModelContainer
+
+    init() {
+        do {
+            container = try ModelContainer(for: WaffliItem.self)
+        } catch {
+            fatalError("No se pudo crear el ModelContainer: \(error)")
+        }
+    }
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView(container: container)
+                .modelContainer(container)
         }
     }
 }
