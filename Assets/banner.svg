@@ -1,0 +1,60 @@
+<svg width="100%" viewBox="0 0 680 280" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Waffli — Banner del repositorio GitHub</title>
+<desc>Banner con fondo color Cocoa oscuro, patrón de waffle, logo y texto de la app Waffli</desc>
+<defs>
+  <pattern id="waffleGrid" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
+    <rect x="0" y="0" width="28" height="28" fill="none"/>
+    <rect x="2" y="2" width="11" height="11" rx="2" fill="#C86B4A" opacity="0.13"/>
+    <rect x="15" y="2" width="11" height="11" rx="2" fill="#C86B4A" opacity="0.08"/>
+    <rect x="2" y="15" width="11" height="11" rx="2" fill="#C86B4A" opacity="0.08"/>
+    <rect x="15" y="15" width="11" height="11" rx="2" fill="#C86B4A" opacity="0.13"/>
+  </pattern>
+  <radialGradient id="glowLeft" cx="20%" cy="50%" r="55%">
+    <stop offset="0%" stop-color="#D88C3A" stop-opacity="0.18"/>
+    <stop offset="100%" stop-color="#6B4A3A" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="glowRight" cx="85%" cy="40%" r="45%">
+    <stop offset="0%" stop-color="#E6C36A" stop-opacity="0.14"/>
+    <stop offset="100%" stop-color="#6B4A3A" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+<rect width="680" height="280" fill="#3D2618"/>
+<rect width="680" height="280" fill="url(#waffleGrid)"/>
+<rect width="680" height="280" fill="url(#glowLeft)"/>
+<rect width="680" height="280" fill="url(#glowRight)"/>
+<rect x="0" y="0" width="680" height="3" fill="#D88C3A" opacity="0.7"/>
+<rect x="60" y="88" width="104" height="104" rx="22" fill="#6B4A3A"/>
+<rect x="60" y="88" width="104" height="104" rx="22" fill="none" stroke="#D88C3A" stroke-width="1.5" opacity="0.6"/>
+<g transform="translate(112, 140)">
+  <rect x="-26" y="-26" width="17" height="17" rx="3" fill="#E6C36A" opacity="0.9"/>
+  <rect x="-5"  y="-26" width="17" height="17" rx="3" fill="#D88C3A" opacity="0.9"/>
+  <rect x="16"  y="-26" width="17" height="17" rx="3" fill="#E6C36A" opacity="0.9"/>
+  <rect x="-26" y="-5"  width="17" height="17" rx="3" fill="#D88C3A" opacity="0.9"/>
+  <rect x="-5"  y="-5"  width="17" height="17" rx="3" fill="#E6C36A" opacity="0.9"/>
+  <rect x="16"  y="-5"  width="17" height="17" rx="3" fill="#D88C3A" opacity="0.9"/>
+  <rect x="-26" y="16"  width="17" height="17" rx="3" fill="#E6C36A" opacity="0.9"/>
+  <rect x="-5"  y="16"  width="17" height="17" rx="3" fill="#D88C3A" opacity="0.9"/>
+  <rect x="16"  y="16"  width="17" height="17" rx="3" fill="#D88C3A" opacity="0.9"/>
+</g>
+<text x="196" y="133" font-family="Georgia, serif" font-size="58" font-weight="700" fill="#FFF6E8" letter-spacing="-1" opacity="0.97">Waffli</text>
+<text x="198" y="163" font-family="system-ui, sans-serif" font-size="15" font-weight="400" fill="#E6C36A" opacity="0.85" letter-spacing="0.3">Tu organizador personal con sabor a waffle</text>
+<rect x="198" y="178" width="48" height="2" rx="1" fill="#D88C3A" opacity="0.7"/>
+<rect x="198" y="194" width="72" height="26" rx="6" fill="#D88C3A" opacity="0.22"/>
+<rect x="198" y="194" width="72" height="26" rx="6" fill="none" stroke="#D88C3A" stroke-width="1" opacity="0.5"/>
+<text x="234" y="212" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#F2B36A" text-anchor="middle">iOS 17+</text>
+<rect x="278" y="194" width="76" height="26" rx="6" fill="#C86B4A" opacity="0.22"/>
+<rect x="278" y="194" width="76" height="26" rx="6" fill="none" stroke="#C86B4A" stroke-width="1" opacity="0.5"/>
+<text x="316" y="212" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#E39A7A" text-anchor="middle">SwiftUI</text>
+<rect x="362" y="194" width="84" height="26" rx="6" fill="#E6C36A" opacity="0.15"/>
+<rect x="362" y="194" width="84" height="26" rx="6" fill="none" stroke="#E6C36A" stroke-width="1" opacity="0.4"/>
+<text x="404" y="212" font-family="system-ui, sans-serif" font-size="12" font-weight="500" fill="#F3DC9A" text-anchor="middle">SwiftData</text>
+<rect x="454" y="194" width="100" height="26" rx="6" fill="#FFF6E8" opacity="0.07"/>
+<rect x="454" y="194" width="100" height="26" rx="6" fill="none" stroke="#FFF6E8" stroke-width="1" opacity="0.2"/>
+<text x="504" y="212" font-family="system-ui, sans-serif" font-size="12" font-weight="400" fill="#FFF6E8" text-anchor="middle" opacity="0.5">Android soon</text>
+<text x="198" y="248" font-family="system-ui, sans-serif" font-size="13" font-weight="400" fill="#FFF6E8" opacity="0.4">by Ana Linares Guzmán</text>
+<circle cx="618" cy="220" r="3" fill="#D88C3A" opacity="0.35"/>
+<circle cx="634" cy="220" r="3" fill="#E6C36A" opacity="0.25"/>
+<circle cx="618" cy="236" r="3" fill="#E6C36A" opacity="0.25"/>
+<circle cx="634" cy="236" r="3" fill="#D88C3A" opacity="0.35"/>
+<rect x="0" y="277" width="680" height="3" fill="#E6C36A" opacity="0.4"/>
+</svg>
