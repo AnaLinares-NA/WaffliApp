@@ -19,14 +19,14 @@
 
 | Feature | Descripción |
 |---|---|
-| 📋 **3 categorías** | Día a día · Personal · Profesional |
-| 📊 **Progreso visual** | Barras de avance y anillo de porcentaje global |
-| ✅ **Auto-archivo** | Las tareas completadas se archivan automáticamente con animación |
-| 🗂️ **Archivadas** | Historial de tareas completadas con fecha y estadísticas |
-| 👤 **Perfil** | Foto desde galería, nombre editable, racha de días y stats |
-| 📅 **Fechas límite** | Con alertas visuales: hoy, mañana, vencido |
-| 🎨 **Paleta propia** | Maple · Waffle · Cocoa · Crema · Canela |
-| 💾 **Persistencia local** | SwiftData — sin backend, sin cuenta, sin internet |
+| **3 categorías** | Día a día · Personal · Profesional |
+| **Progreso visual** | Barras de avance y anillo de porcentaje global |
+| **Auto-archivo** | Las tareas completadas se archivan automáticamente con animación |
+| **Archivadas** | Historial de tareas completadas con fecha y estadísticas |
+| **Perfil** | Foto desde galería, nombre editable, racha de días y stats |
+| **Fechas límite** | Con alertas visuales: hoy, mañana, vencido |
+| **Paleta propia** | Maple · Waffle · Cocoa · Crema · Canela |
+| **Persistencia local** | SwiftData — sin backend, sin cuenta, sin internet |
 
 ---
 
