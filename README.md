@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="Assets/banner.svg" alt="Waffli Banner" width="100%"/>
+<img src="Assets/Banner_Waffli.gif" alt="Waffli Banner" width="100%"/>
 
 [![iOS](https://img.shields.io/badge/iOS-17%2B-black?style=for-the-badge&logo=apple&logoColor=white)](https://developer.apple.com/ios/)
 [![Swift](https://img.shields.io/badge/Swift-5.9-F05138?style=for-the-badge&logo=swift&logoColor=white)](https://swift.org)
