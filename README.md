@@ -4,9 +4,9 @@
 
 [![iOS](https://img.shields.io/badge/iOS-17%2B-black?style=for-the-badge&logo=apple&logoColor=white)](https://developer.apple.com/ios/)
 [![Swift](https://img.shields.io/badge/Swift-5.9-F05138?style=for-the-badge&logo=swift&logoColor=white)](https://swift.org)
-[![SwiftUI](https://img.shields.io/badge/SwiftUI-blue?style=for-the-badge&logo=swift&logoColor=white)](https://developer.apple.com/xcode/swiftui/)
+[![SwiftUI](https://img.shields.io/badge/SwiftUI-blue?style=for-the-badge&logo=swift&logoColor=white)](https://developer.apple.com/swiftui/)
 [![SwiftData](https://img.shields.io/badge/SwiftData-persistence-orange?style=for-the-badge&logo=apple&logoColor=white)](https://developer.apple.com/documentation/swiftdata)
-[![Android](https://img.shields.io/badge/Android-coming%20soon-3DDC84?style=for-the-badge&logo=android&logoColor=white)]()
+[![Android](https://img.shields.io/badge/Android-coming%20soon-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://developer.android.com/develop?hl=es-419)
 [![License](https://img.shields.io/badge/License-All%20Rights%20Reserved-red?style=for-the-badge)](#license)
 
 *Organiza tus tareas del día a día, proyectos personales y profesionales — todo en un solo lugar.*
