@@ -27,6 +27,7 @@
 | **Fechas límite** | Con alertas visuales: hoy, mañana, vencido |
 | **Paleta propia** | Maple · Waffle · Cocoa · Crema · Canela |
 | **Persistencia local** | SwiftData — sin backend, sin cuenta, sin internet |
+| **Gamificación** | Zorrito mascota, waffles, tienda de outfits y logros |
 
 ---
 
@@ -36,6 +37,18 @@
 |---|---|---|
 | iOS | Disponible | SwiftUI + SwiftData |
 | Android | Próximamente | Jetpack Compose |
+
+---
+
+## Gamificación
+
+Waffli incluye un sistema de gamificación completo centrado en **Mappli**, tu zorrito mascota:
+
+- **Waffles** — ganas 1 waffle por cada tarea completada
+- **Zorrito** — necesita 2 waffles al día para estar feliz; tiene 5 estados de ánimo según tu actividad
+- **Tienda** — gasta tus waffles en sombreros, ropa y colores de pelaje para personalizar a tu zorrito
+- **Logros** — 12 medallas desbloqueables por rachas, waffles acumulados, horarios y más
+- **Notificaciones in-app** — popup al desbloquear un logro + badge en el botón del zorrito
 
 ---
 
@@ -55,22 +68,31 @@
 
 ```
 Waffli/
-├── WaffliApp.swift          # Entry point + ModelContainer
+├── WaffliApp.swift                 # Entry point + ModelContainer (5 modelos)
 ├── Models/
-│   └── WaffliItem.swift     # Modelo SwiftData
+│   ├── WaffliItem.swift            # Modelo principal de tareas
+│   ├── FoxModel.swift              # Zorrito mascota + FoxMood enum
+│   ├── WaffleLog.swift             # Registro de waffles ganados
+│   ├── AchievementModel.swift      # Logros + AchievementType enum
+│   ├── ShopItem.swift              # Catálogo de tienda + PurchasedItem
+│   └── GamificationManager.swift  # Lógica central de gamificación
 ├── Views/
-│   ├── MainView.swift       # Contenedor raíz con navegación
-│   ├── HomeView.swift       # Pantalla principal
-│   ├── ProfileView.swift    # Perfil del usuario
-│   ├── ArchivedView.swift   # Tareas archivadas
-│   └── TaskFormView.swift   # Formulario nueva/editar tarea
-├── Components/
-│   ├── WaffliHeader.swift   # Barra superior flotante
-│   ├── BottomBar.swift      # Barra inferior con botón +
-│   ├── SummaryHeader.swift  # Anillo de progreso + stats
-│   ├── ItemListSection.swift# Lista de tarjetas de tareas
-│   └── CategoryFilterBar.swift # Chips de filtro
-└── Assets.xcassets          # Colores + imágenes
+│   ├── MainView.swift              # Contenedor raíz + popup de logros
+│   ├── HomeView.swift              # Pantalla principal
+│   ├── ProfileView.swift           # Perfil del usuario
+│   ├── ArchivedView.swift          # Tareas archivadas
+│   ├── TaskFormView.swift          # Formulario nueva/editar tarea
+│   ├── FoxView.swift               # Pantalla del zorrito
+│   ├── ShopView.swift              # Tienda de outfits
+│   └── AchievementsView.swift      # Muro de logros
+└── Components/
+    ├── WaffliHeader.swift          # Barra superior flotante
+    ├── BottomBar.swift             # Barra inferior con botón + y 🦊
+    ├── SummaryHeader.swift         # Anillo de progreso + stats
+    ├── ItemListSection.swift       # Lista de tarjetas de tareas
+    ├── CategoryFilterBar.swift     # Chips de filtro con animaciones
+    ├── FoxSVGView.swift            # Zorrito animado en SwiftUI Canvas
+    └── WaffliPreviewData.swift     # Datos de preview para Canvas
 ```
 
 ---
