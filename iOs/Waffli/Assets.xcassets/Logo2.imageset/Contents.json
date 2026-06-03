@@ -1,17 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "Vacio_L.png",
-      "idiom" : "universal"
-    },
-    {
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "light"
-        }
-      ],
-      "filename" : "Vacio_L 1.png",
+      "filename" : "Logo_D.png",
       "idiom" : "universal"
     },
     {
@@ -21,7 +11,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "Vacio_T.png",
+      "filename" : "Logo_L.png",
       "idiom" : "universal"
     }
   ],

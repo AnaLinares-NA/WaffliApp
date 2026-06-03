@@ -11,6 +11,7 @@ struct ItemListSection: View {
     let items: [WaffliItem]
     let onEdit: (WaffliItem) -> Void
     let onDelete: (WaffliItem) -> Void
+    var onComplete: ((WaffliItem) -> Void)? = nil
 
     var body: some View {
         if items.isEmpty {
@@ -18,7 +19,7 @@ struct ItemListSection: View {
         } else {
             LazyVStack(spacing: 10) {
                 ForEach(items) { item in
-                    ItemCard(item: item, onEdit: onEdit, onDelete: onDelete)
+                    ItemCard(item: item, onEdit: onEdit, onDelete: onDelete, onComplete: onComplete)
                 }
             }
         }
@@ -29,16 +30,18 @@ struct ItemCard: View {
     @Bindable var item: WaffliItem
     let onEdit: (WaffliItem) -> Void
     let onDelete: (WaffliItem) -> Void
+    var onComplete: ((WaffliItem) -> Void)? = nil
 
     @State private var showDeleteConfirm = false
     @State private var justCompleted = false
     private let catColor: Color
 
-    init(item: WaffliItem, onEdit: @escaping (WaffliItem) -> Void, onDelete: @escaping (WaffliItem) -> Void) {
-        self.item     = item
-        self.onEdit   = onEdit
-        self.onDelete = onDelete
-        self.catColor = Color(item.category.color)
+    init(item: WaffliItem, onEdit: @escaping (WaffliItem) -> Void, onDelete: @escaping (WaffliItem) -> Void, onComplete: ((WaffliItem) -> Void)? = nil) {
+        self.item       = item
+        self.onEdit     = onEdit
+        self.onDelete   = onDelete
+        self.onComplete = onComplete
+        self.catColor   = Color(item.category.color)
     }
 
     var deadlineLabel: String? {
@@ -61,9 +64,7 @@ struct ItemCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack(alignment: .top, spacing: 10) {
-                Button {
-                    handleToggle()
-                } label: {
+                Button { handleToggle() } label: {
                     Image(systemName: item.isDone ? "checkmark.circle.fill" : "circle")
                         .font(.title3)
                         .foregroundStyle(item.isDone ? Color("Waffle") : Color("Cocoa").opacity(0.3))
@@ -82,7 +83,6 @@ struct ItemCard: View {
                             .lineLimit(2)
                     }
                 }
-
                 Spacer()
                 CategoryBadge(category: item.category)
             }
@@ -99,7 +99,6 @@ struct ItemCard: View {
                         .font(.system(size: 13, weight: .bold, design: .rounded))
                         .foregroundStyle(catColor)
                 }
-
                 Slider(value: Binding(
                     get: { item.progress },
                     set: { val in handleSlider(val) }
@@ -112,38 +111,26 @@ struct ItemCard: View {
                 Button { onEdit(item) } label: {
                     Label("Editar", systemImage: "pencil").font(.caption)
                 }
-                .buttonStyle(.borderless)
-                .foregroundStyle(Color("Maple"))
-
+                .buttonStyle(.borderless).foregroundStyle(Color("Maple"))
                 Divider().frame(height: 12).overlay(Color("Cocoa").opacity(0.2))
-
-                Button(role: .destructive) {
-                    showDeleteConfirm = true
-                } label: {
+                Button(role: .destructive) { showDeleteConfirm = true } label: {
                     Label("Eliminar", systemImage: "trash").font(.caption)
                 }
-                .buttonStyle(.borderless)
-                .foregroundStyle(Color("Canela"))
+                .buttonStyle(.borderless).foregroundStyle(Color("Canela"))
             }
         }
         .padding(14)
         .background(
             ZStack {
                 Color("Crema").opacity(0.85)
-                // Flash dorado al completarse
-                if justCompleted {
-                    Color("Waffle").opacity(0.25)
-                        .transition(.opacity)
-                }
+                if justCompleted { Color("Waffle").opacity(0.25).transition(.opacity) }
             }
         )
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .overlay(
             RoundedRectangle(cornerRadius: 16)
-                .stroke(
-                    justCompleted ? Color("Waffle").opacity(0.7) : Color("Waffle").opacity(0.3),
-                    lineWidth: justCompleted ? 1.5 : 0.5
-                )
+                .stroke(justCompleted ? Color("Waffle").opacity(0.7) : Color("Waffle").opacity(0.3),
+                        lineWidth: justCompleted ? 1.5 : 0.5)
         )
         .confirmationDialog("¿Eliminar \"\(item.name)\"?", isPresented: $showDeleteConfirm, titleVisibility: .visible) {
             Button("Eliminar", role: .destructive) { onDelete(item) }
@@ -156,33 +143,23 @@ struct ItemCard: View {
             if !item.isDone {
                 triggerComplete()
             } else {
-                // Desmarcar: sacar del archivo
-                item.isDone     = false
-                item.progress   = 0.8
-                item.isArchived = false
-                item.archivedAt = nil
+                item.isDone = false; item.progress = 0.8
+                item.isArchived = false; item.archivedAt = nil
             }
         }
     }
 
     private func handleSlider(_ val: Double) {
         item.progress = val
-        if val >= 1.0 && !item.isDone {
-            triggerComplete()
-        } else if val < 1.0 {
-            item.isDone     = false
-            item.isArchived = false
-            item.archivedAt = nil
-        }
+        if val >= 1.0 && !item.isDone { triggerComplete() }
+        else if val < 1.0 { item.isDone = false; item.isArchived = false; item.archivedAt = nil }
     }
 
     private func triggerComplete() {
         justCompleted = true
-        // Pequeño delay para que el usuario vea el flash antes de que desaparezca
+        onComplete?(item) // 🧇 dispara gamificación
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-            withAnimation(.easeInOut(duration: 0.4)) {
-                item.completeAndArchive()
-            }
+            withAnimation(.easeInOut(duration: 0.4)) { item.completeAndArchive() }
         }
     }
 }
@@ -190,34 +167,33 @@ struct ItemCard: View {
 struct CategoryBadge: View {
     let category: WaffliCategory
     var body: some View {
-        Label(category.rawValue, systemImage: category.icon)
-            .font(.system(size: 10, weight: .medium))
-            .padding(.horizontal, 8)
-            .padding(.vertical, 4)
-            .background(Color(category.color).opacity(0.15))
-            .foregroundStyle(Color(category.color))
-            .clipShape(Capsule())
+        HStack(spacing: 4) {
+            Image(category.icon).resizable().scaledToFit().frame(width: 12, height: 12)
+            Text(category.rawValue).font(.system(size: 10, weight: .medium))
+        }
+        .padding(.horizontal, 8).padding(.vertical, 4)
+        .background(Color(category.color).opacity(0.15))
+        .foregroundStyle(Color(category.color))
+        .clipShape(Capsule())
     }
 }
 
 struct EmptyStateView: View {
     var body: some View {
         VStack(spacing: 12) {
-
-            Image("Vacio")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 120, height: 120)
-
-            Text("Nada aquí todavía")
-                .font(.headline)
-                .foregroundStyle(Color("Cocoa").opacity(0.7))
-
-            Text("Toca + para crear tu nueva tarea")
-                .font(.subheadline)
-                .foregroundStyle(Color("Cocoa").opacity(0.45))
+            Image("Vacio").resizable().scaledToFit().frame(width: 120, height: 120)
+            Text("Nada aquí todavía").font(.headline).foregroundStyle(Color("Cocoa").opacity(0.7))
+            Text("Toca + para crear tu nueva tarea").font(.subheadline).foregroundStyle(Color("Cocoa").opacity(0.45))
         }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 50)
+        .frame(maxWidth: .infinity).padding(.vertical, 50)
     }
+}
+
+#Preview {
+    ItemListSection(
+        items: WaffliPreviewData.items,
+        onEdit: { _ in },
+        onDelete: { _ in }
+    )
+    .padding()
 }

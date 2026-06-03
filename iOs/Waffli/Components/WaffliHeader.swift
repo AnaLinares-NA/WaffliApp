@@ -43,15 +43,11 @@ struct WaffliHeader: View {
 
             HStack(spacing: 0) {
 
-                Image("Icono")
+                Image("Logo")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 34, height: 34)
+                    .frame(width: 48, height: 48)
                     .clipShape(RoundedRectangle(cornerRadius: 9))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 9)
-                            .stroke(Color("Waffle").opacity(0.35), lineWidth: 1)
-                    )
 
                 Spacer()
 
@@ -109,4 +105,22 @@ struct WaffliHeader: View {
         .padding(.top, 10)
         .padding(.bottom, 10)
     }
+}
+
+#Preview("Default") {
+    WaffliHeader(
+        displayName: "Waffler",
+        navigateToProfile: .constant(false)
+    )
+    .padding()
+    .background(Color("Crema"))
+}
+
+#Preview("Con nombre largo") {
+    WaffliHeader(
+        displayName: "Juán Pérez Martínez",
+        navigateToProfile: .constant(false)
+    )
+    .padding()
+    .background(Color("Crema"))
 }

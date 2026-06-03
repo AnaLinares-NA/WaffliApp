@@ -85,20 +85,20 @@ struct ProfileView: View {
                                             .resizable()
                                             .scaledToFill()
                                     } else {
-                                        // En caso de no haber foto se muestra icono m. + fondo cálido
+                                        // En caso de no haber foto se muestra Logo m. + fondo cálido
                                         ZStack {
                                             Circle()
                                                 .fill(
                                                     LinearGradient(
-                                                        colors: [Color("Waffle").opacity(0.4), Color("Maple").opacity(0.2)],
+                                                        colors: [Color("Canela").opacity(0.4), Color("Waffle").opacity(0.2)],
                                                         startPoint: .topLeading,
                                                         endPoint: .bottomTrailing
                                                     )
                                                 )
-                                            Image("Icono")
+                                            Image("Logo")
                                                 .resizable()
                                                 .scaledToFit()
-                                                .frame(width: 46, height: 46)
+                                                .frame(width: 75, height: 75)
                                                 .clipShape(RoundedRectangle(cornerRadius: 12))
                                         }
                                     }
@@ -210,6 +210,74 @@ struct ProfileView: View {
                     }
 
                     VStack(alignment: .leading, spacing: 10) {
+                        SectionLabel(icon: "icloud.fill", title: "Sincronización")
+
+                        HStack(spacing: 14) {
+                            // Ícono con candado encima — indica que está bloqueado
+                            ZStack(alignment: .bottomTrailing) {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color("Waffle").opacity(0.12))
+                                    .frame(width: 42, height: 42)
+                                Image(systemName: "icloud.slash")
+                                    .font(.system(size: 18))
+                                    .foregroundStyle(Color("Cocoa").opacity(0.3))
+                                Image(systemName: "lock.fill")
+                                    .font(.system(size: 9))
+                                    .foregroundStyle(Color("Cocoa").opacity(0.4))
+                                    .offset(x: 4, y: 4)
+                            }
+
+                            VStack(alignment: .leading, spacing: 3) {
+                                HStack(spacing: 5) {
+                                    Text("Sincronizar con iCloud")
+                                        .font(.system(size: 15, weight: .semibold))
+                                        .foregroundStyle(Color("Cocoa").opacity(0.5))
+                                    // Badge "Próximamente"
+                                    Text("PRÓXIMAMENTE")
+                                        .font(.system(size: 9, weight: .bold))
+                                        .padding(.horizontal, 6)
+                                        .padding(.vertical, 2)
+                                        .background(Color("Maple").opacity(0.15))
+                                        .foregroundStyle(Color("Maple"))
+                                        .clipShape(Capsule())
+                                }
+                                Text("Requiere Apple Developer Account")
+                                    .font(.caption)
+                                    .foregroundStyle(Color("Cocoa").opacity(0.4))
+                            }
+
+                            Spacer()
+
+                            // Toggle deshabilitado visualmente
+                            Toggle("", isOn: .constant(false))
+                                .labelsHidden()
+                                .tint(Color("Maple"))
+                                .disabled(true)
+                                .opacity(0.4)
+                        }
+                        .padding(14)
+                        .background(Color("Crema").opacity(0.6))
+                        .clipShape(RoundedRectangle(cornerRadius: 14))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 14)
+                                .stroke(Color("Cocoa").opacity(0.1), lineWidth: 0.5)
+                        )
+
+                        // Nota informativa
+                        HStack(alignment: .top, spacing: 6) {
+                            Image(systemName: "info.circle")
+                                .font(.caption2)
+                                .foregroundStyle(Color("Maple").opacity(0.6))
+                                .padding(.top, 1)
+                            Text("La sincronización entre dispositivos estará disponible con una Apple Developer Account. Toda la arquitectura ya está lista para activarla.")
+                                .font(.caption2)
+                                .foregroundStyle(Color("Cocoa").opacity(0.4))
+                        }
+                        .padding(.horizontal, 4)
+                    }
+
+
+                    VStack(alignment: .leading, spacing: 10) {
                         SectionLabel(icon: "folder.fill", title: "Historial")
                         NavigationLink(destination: ArchivedView()) {
                             HStack(spacing: 12) {
@@ -242,7 +310,7 @@ struct ProfileView: View {
                     }
 
                     HStack(spacing: 6) {
-                        Image("Icono")
+                        Image("Logo2")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 16, height: 16)
@@ -348,4 +416,13 @@ struct CategoryProgressRow: View {
         .clipShape(RoundedRectangle(cornerRadius: 12))
         .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color("Waffle").opacity(0.2), lineWidth: 0.5))
     }
+}
+
+#Preview {
+    let container = try! ModelContainer(for: WaffliItem.self)
+
+    return NavigationStack {
+        ProfileView()
+    }
+    .modelContainer(container)
 }

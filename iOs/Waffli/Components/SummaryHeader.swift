@@ -29,11 +29,9 @@ struct OverallProgressRing: View {
 
     var body: some View {
         ZStack {
-
             Circle()
                 .stroke(Color("Waffle").opacity(0.35), lineWidth: 10)
                 .frame(width: 110, height: 110)
-
             Circle()
                 .trim(from: 0, to: progress)
                 .stroke(
@@ -69,9 +67,10 @@ struct MiniStatCard: View {
 
     var body: some View {
         VStack(spacing: 4) {
-            Image(systemName: category.icon)
-                .font(.caption)
-                .foregroundStyle(Color(category.color))
+            Image(category.icon)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 18, height: 18)
             Text("\(Int(avg * 100))%")
                 .font(.system(size: 15, weight: .semibold, design: .rounded))
                 .foregroundStyle(Color("Cocoa"))
@@ -86,4 +85,19 @@ struct MiniStatCard: View {
         .background(Color("Waffle").opacity(0.18))
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
+}
+
+#Preview("50%") {
+    OverallProgressRing(progress: 0.5)
+        .padding()
+}
+
+#Preview("Completado") {
+    OverallProgressRing(progress: 1.0)
+        .padding()
+}
+
+#Preview("Vacío") {
+    OverallProgressRing(progress: 0.0)
+        .padding()
 }

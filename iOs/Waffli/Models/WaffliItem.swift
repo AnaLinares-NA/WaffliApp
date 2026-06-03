@@ -15,9 +15,14 @@ enum WaffliCategory: String, CaseIterable, Codable {
 
     var icon: String {
         switch self {
-        case .daily:    return "sun.max.fill"
-        case .personal: return "person.fill"
-        case .work:     return "briefcase.fill"
+        case .daily:
+            return "F_Dia"
+
+        case .personal:
+            return "F_Personal"
+
+        case .work:
+            return "F_Profesional"
         }
     }
 
@@ -29,9 +34,14 @@ enum WaffliCategory: String, CaseIterable, Codable {
     
     var color: String {
         switch self {
-        case .daily:    return "Maple"
-        case .personal: return "Canela"
-        case .work:     return "Cocoa"
+        case .daily:
+            return "Maple"
+
+        case .personal:
+            return "Canela"
+
+        case .work:
+            return "Cocoa"
         }
     }
 }
@@ -75,3 +85,28 @@ final class WaffliItem {
         archivedAt  = Date()
     }
 }
+
+extension WaffliItem {
+    static func preview(
+        name: String = "Tarea de prueba",
+        desc: String = "Descripción",
+        category: WaffliCategory = .daily,
+        progress: Double = 0.5,
+        isDone: Bool = false,
+        isArchived: Bool = false
+    ) -> WaffliItem {
+        let item = WaffliItem(
+            name: name,
+            desc: desc,
+            category: category,
+            progress: progress
+        )
+
+        item.isDone = isDone
+        item.isArchived = isArchived
+        item.archivedAt = isArchived ? .now : nil
+
+        return item
+    }
+}
+

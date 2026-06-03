@@ -154,3 +154,14 @@ struct TaskFormView: View {
         dismiss()
     }
 }
+
+#Preview {
+    let container = try! ModelContainer(for: WaffliItem.self)
+
+    return NavigationStack {
+        TaskFormView(
+            context: container.mainContext,
+            mode: .add
+        )
+    }
+}

@@ -61,12 +61,14 @@ struct ArchivedView: View {
 struct AchievementBanner: View {
     let count: Int
     let items: [WaffliItem]
+
     var catBreakdown: [(WaffliCategory, Int)] {
         WaffliCategory.allCases.compactMap { cat in
             let n = items.filter { $0.category == cat }.count
             return n > 0 ? (cat, n) : nil
         }
     }
+
     var body: some View {
         VStack(spacing: 10) {
             HStack(spacing: 10) {
@@ -86,7 +88,11 @@ struct AchievementBanner: View {
             HStack(spacing: 8) {
                 ForEach(catBreakdown, id: \.0) { cat, n in
                     HStack(spacing: 4) {
-                        Image(systemName: cat.icon).font(.system(size: 11))
+                        // Imagen propia en lugar de SF Symbol
+                        Image(cat.icon)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 13, height: 13)
                         Text("\(n)").font(.system(size: 12, weight: .semibold))
                     }
                     .padding(.horizontal, 10).padding(.vertical, 5)
@@ -114,6 +120,7 @@ struct ArchivedCard: View {
         guard let d = item.archivedAt else { return "" }
         return "Completada " + d.formatted(date: .abbreviated, time: .omitted)
     }
+
     var body: some View {
         HStack(spacing: 12) {
             Image(systemName: "checkmark.circle.fill").font(.title3).foregroundStyle(Color("Waffle"))
@@ -155,4 +162,12 @@ struct EmptyArchivedView: View {
         }
         .frame(maxWidth: .infinity).padding(.vertical, 50)
     }
+}
+
+#Preview {
+    let container = try! ModelContainer(for: WaffliItem.self)
+    return NavigationStack {
+        ArchivedView()
+    }
+    .modelContainer(container)
 }
